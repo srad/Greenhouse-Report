@@ -1,12 +1,12 @@
 
 \graphicspath{{members/kh/Pictures/}}
 
-\subsection{Properties of Leaves}
+\subsection{Leave Properties}
 \input{members/kh/authors}
 To achieve more realistic leaves, the simulation receives information from the modeler which analyses the structure of the different parts of the tomato plant. Since the estimation and measurements mainly focus on the leaves, the first structure analysis also just takes the leaves into account.
 In the following paragraphs the leaf structure will be analyzed. First it is only looked at three structural aspects. If this approach is not meaningful after designing there are more parts that need to be analyzed later on.
 
-\subsubsection{Color}
+\subsubsection*{Color}
 The green color of a leaf comes from clorophyll. It a class of natural coloring which is produced by different organisms. 
 The absorption spectrum of clorophyll is shown in Figure \ref{clorophyll}. It is shown that all wavelength accept 500nm to 600nm is being absorbed. The green color is a sign for a well functioning  photosythesis. This leads to the conclusion of a good growth and a healthy plant. Therefore healthy plants appear in a green color.
 
@@ -17,10 +17,10 @@ The absorption spectrum of clorophyll is shown in Figure \ref{clorophyll}. It is
 	\label{clorophyll}
 \end{figure}
 
-\subsubsection{Specularity}
+\subsubsection*{Specularity}
 Every plant has its own manner of protection. One of these manners is having special layers on the leaves. The outer layer is usually covered with different materials like cutin and natural wax which mostly contain  alcohol, alkaline and fatty acid. The Wax the wax itself provides a certain specularity of the leaf. This specularity needs to be simulated, because there might appear some specularity effects which might change the appearance of an object that usually has a fix color. For example if light falls directly on the leaf there might appear a bright white spot. This will later on not be seen as a leaf in the total leaf area that is mesaured, because the color differs from the green that is detected.
 
-\subsubsection{Roughness}
+\subsubsection*{Roughness}
 The stucture of the leaves might have an impact on the viewable color aswell. A leaf as we know it, is not a 2d surface, but more a three dimensional object with a certain structure. A leaf contains three major aspects that let it appear in a more threedimensional way. The first two are the leaf stem and the veins forking from it. The thrid is the microstructural setting.
 
 \subsection{Color- and Materialchange in Blender}
@@ -32,16 +32,15 @@ To get a more realistic and reliable model of the plants we change the color and
 Blender gives many options to change the properties of a material. In the following we will discuss the properties: color(appearence), metallic, emission, roughness , reflectiveness and normals. These facets are part of the pbr-library in Blender(Figure \ref{pbr}).
 The changes made in this section will mainly focus on the topside of the leaf(the side that faces the sun). This is based on the fact, that the leafarea is calculated by taking a snapshot from the top of the plant. The bottom-side will be irrelevant and will be neglected in the simulation.
 
-\subsubsection{Blender properties}
+\subsubsection*{Blender properties}
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.6\textwidth]{blender_properties.png}
 	\caption{PBR Material}
 	\label{pbr}
 \end{figure}
-\textbf{Appearence}\\
+\textbf{Appearance}\\
 This property can be splitted in two components. The color and the ambient occlusion. The color modifies the RGB-Values of an Object. The ambient occlusion simulates shadows between different objects, even if there is no light source in the scenery. In the simulation of the leaves and the tomatoes, the focus will mainly be on the color.\\
-
 
 \textbf{Roughness}\\
 The roughness is a property that is realized by a gray scale. The micro-surface of the material changes to a slightly rougher structure and this changes the looks and reflectionproperties when it comes to shading and rendering. \newline
@@ -58,12 +57,12 @@ The emission describes the light a material will emit. So the material itself wi
 A normal describes the direction an object points to. It is usually an orthogonal vector on a surface which leads to the side which shall be visible to the camera. It is important for shading, lighting  and the visibility of the surface itself.\\
 
 \subsection{Materialchange: practical approach}
-\%input{members/kh/authors}
+\input{members/kh/authors}
+
 Since the leaves are already imported into blender, it is only necessary to take certain objects and color these in another color. As described before this task is approached by adding a new material to an object. In the following paragraphs the Pythoncode will be described. \newline
 Coloring the leaves is performed in three steps.
 
-
-\subsubsection{Selecting Objects}
+\subsubsection*{Selecting Objects}
 To select objects in blender a scenery has to be picked first. The scenery contains the objects that need to be edited later on. The leaves are easiely picked by looping over all elements inside the scenery. All Elements with the suffix ''Leaf'' are added to an array so they can be accessed later.
 \lstset{language=Python, frame=single}
 \begin{lstlisting}
@@ -76,7 +75,7 @@ leafs = [obj for obj in scene.objects
 if fnmatch.fnmatchcase(obj.name, "*Leaf")]
 \end{lstlisting}
 
-\subsubsection{Creating Material}
+\subsubsection*{Creating Material}
 Since all leaves have been detected, a new material needs to be established. As described in the previous section the color, metallic, specularity and roughness of the material will be edited, so the leaf gets the structure as described.
 \lstset{language=Python, frame=single}
 \begin{lstlisting}
@@ -91,7 +90,7 @@ mat_brown.specular_intensity = (0.5)
 mat_brown.roughness = (0.55)
 \end{lstlisting}
 
-\subsubsection{Applying Material}
+\subsubsection*{Applying Material}
 To apply the material to the leaves the existing material needs to be deleted first, otherwise Blender would not set the new material as a first priority to the object. After this the material can be applied to the object. This will be performed in a loop over all elements inside the array with all leaves.
 
 \lstset{language=Python, frame=single}
@@ -153,15 +152,15 @@ As already mensioned before the system needs reliable data to work with, so it i
 To get these textures we basically need a picture or an already existing texture. There are a few requires Stepts to apply a texture to an object in Blender, so all gaps, shades, lightings, reflections and bumps are as realistic as possible.
 Overall there are a few textures needed wich can all be excluded from an already existing picture.
 In the following paragraphs the textures are described an can be seen in figure \ref{textures} :
-\subsubsection{Diffuse Texture}
+\subsubsection*{Diffuse Texture}
 The diffuse texture is the original bitmap. This picture is the root where all the followig textures are generated from. This picture has to contain all information that should be added to the object inside of Blener.
-\subsubsection{Normal Texture}
+\subsubsection*{Normal Texture}
 The normal texture is a bumpmap. It shows small bumps and roughnesses in the structure of the object. It adds more detail to the shading, without increasing the number of polygons the object is made of. 
-\subsubsection{Specularity Texture}
+\subsubsection*{Specularity Texture}
 The specularity texture tells the program which part of the object are glossy and which are black. The object can be reflective like metal, ceramic or plastic. It is usually a greyscale map where the black and white parts of the map highlight specularity of a pixel.
-\subsubsection{Occlusion Texture}
+\subsubsection*{Occlusion Texture}
 The occlusionmap adds more detail to the object. Is stores information about depth and shadows inside of an object. May Objects already have a more rough structure and more depth than a picture printed on an object can show.
-\subsubsection{Displacement Texture}
+\subsubsection*{Displacement Texture}
 The displacementtexture stores the 3D information of an image. A surface is usually not 2D and in the case of a leaf it is certain that it has a structure defined my the stam and the veins goin out of it as describes by the modeler. To have these parts stick out more, the displacementmap adds the 3D details to an object.
 \begin{figure}[h]
 	\centering

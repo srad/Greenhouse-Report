@@ -21,7 +21,10 @@ $$A_{Observed} = p_{green}\cdot A_{Camera}$$
 
 \textbf{Note:} This whole process works as long as the camera is set as supposed. A tilted camera would break the results since the used triangle would no longer have a $90^{\circ}$ angle. A tilted camera might also unintentionally capture adjacent plants.\\
 \textbf{Model:} The observed plants are relatively small (max 40cm) in relation to the height of the camera (min 2m). Hence the plants can be considered to be flat on the ground, without changing the visible area. This assumption breaks when the plants grow much larger than expected. However, this is pretty uncommon and can be therfore be neglected.
+
 \subsubsection{Tilt angle correction}
+\input{members/tf/authors}
+
 The area calculated in the previous section represents the green area as seen from above, which is not the area of the leaves in the canopy we are searching for. That's because the leaves aren't aligned horizontal but tilted and therefore their size is not perfectly captured as seen in figure \ref{fig:tiltedLeaf}. We have to add a correction to the obseved area to estimate the canopy area.\\
    \begin{figure}[H]
        \centering
