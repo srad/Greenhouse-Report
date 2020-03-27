@@ -149,20 +149,22 @@ The removal of objects is shown in Figure \ref{order}.
 \subsection{Textures in Blender}
 \label{textures}
 \input{members/kh/authors}
+
 The following section is just a small outlook. The practical implementation like applying textures or chosing the correct tools in Blender will no be discussed on this point.\newline
 As already mensioned before the system needs reliable data to work with, so it is the task of the simulation to get the plants to look as realistic as possible. Real leaves have spots that reflect the light and shading that lets the collor appear differently. To apply these settings it will be necessarry to work with a texture based approach to get the leaves look better in future simulation. 
 To get these textures we basically need a picture or an already existing texture. There are a few requires Stepts to apply a texture to an object in Blender, so all gaps, shades, lightings, reflections and bumps are as realistic as possible.
 Overall there are a few textures needed wich can all be excluded from an already existing picture.
 In the following paragraphs the textures are described an can be seen in figure \ref{textures} :
-\subsubsection{Diffuse Texture}
+
+\subsubsection*{Diffuse Texture}
 The diffuse texture is the original bitmap. This picture is the root where all the followig textures are generated from. This picture has to contain all information that should be added to the object inside of Blener.
-\subsubsection{Normal Texture}
+\subsubsection*{Normal Texture}
 The normal texture is a bumpmap. It shows small bumps and roughnesses in the structure of the object. It adds more detail to the shading, without increasing the number of polygons the object is made of. 
-\subsubsection{Specularity Texture}
+\subsubsection*{Specularity Texture}
 The specularity texture tells the program which part of the object are glossy and which are black. The object can be reflective like metal, ceramic or plastic. It is usually a greyscale map where the black and white parts of the map highlight specularity of a pixel.
-\subsubsection{Occlusion Texture}
+\subsubsection*{Occlusion Texture}
 The occlusionmap adds more detail to the object. Is stores information about depth and shadows inside of an object. May Objects already have a more rough structure and more depth than a picture printed on an object can show.
-\subsubsection{Displacement Texture}
+\subsubsection*{Displacement Texture}
 The displacementtexture stores the 3D information of an image. A surface is usually not 2D and in the case of a leaf it is certain that it has a structure defined my the stam and the veins goin out of it as describes by the modeler. To have these parts stick out more, the displacementmap adds the 3D details to an object.
 \begin{figure}[h]
 	\centering
