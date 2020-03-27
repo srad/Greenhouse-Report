@@ -12,7 +12,7 @@ To translate that fraction into an area we have to find the total area that the 
        \label{fig:setupAbove}
    \end{figure}
 An perpendicular triangle can constructed by bisecting the aperture angle, as shown in figure \ref{fig:setupAbove}.
-Furthermore the height of the triangle is $h_{Camera}$, the angle in the upper corner is $\frac{\alpha}{2}$ and the bottom side has a length of half the width of the observed area. The width of the observed area, calculated from the triangle needs to be squared, to get the area of the squared image:
+Furthermore the height of the triangle is $h_{Camera}$, the angle in the upper corner is $\frac{\alpha}{2}$ and the bottom side has a length of half the width of the observed area. The one dimensional width of the observed area, calculated from the triangle needs to be squared, to get the two dimensional area of the ground:
 $$A_{Camera} = (2\cdot h_{Camera}\cdot tan(\frac{\alpha}{2}))^2$$
 
 $A_{Camera}$ only needs to be calculated once, as long as the camera parameters don't change. To calculate the area of the observed green, we simply multiply the captured area of the camera with the fraction $p_{Green}$ calculated by the clustering: 
@@ -166,7 +166,7 @@ into multiple horizontal layers with equal depth ($\Delta d$). \cite{acock1978co
 
 The dependency is assumed to be a non-linear, meaning there is a nonlinear function $F$ s.t. $$yield = F(LAI)$$. To find that non-linearity, data needs to be gathered first. For complex models more data is needed than for simple models. Thus for the first iteration the dependency is assumed to be linear. The yield will then be predicted by
 $$yield = m\cdot LAI + b$$
-Once much data is gathered and it turned out that a linear model doesn't make good
+Once much data is gathered and it turned out that a linear model doesn't provide good
 predictions, it is possible to use more complex models for later iterations.\\
 
 \textbf{Reasonable non-linear approaches:}
