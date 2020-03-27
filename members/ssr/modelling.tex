@@ -1,6 +1,6 @@
 \graphicspath{{members/ssr/figures/modelling}}
 
-\subsection{Design Overview}
+\subsection{Design Overview}\label{null:design-overview}
 \input{members/ssr/authors}
 
 The designed system for the purpose of yield prediction is founded on one central assumption: 
@@ -19,7 +19,7 @@ the LAI.
 
 \input{members/ssr/modelling/plant-model.tex}
 
-\subsection{Computational Pipelines}
+\subsection{Computational Pipelines}\label{subsec:computational-pipelines}
 \input{members/ssr/authors}
 
 To estimate the central LAI metric, two computation pipelines are combined to extract specific metrics from images.
@@ -28,18 +28,23 @@ in the following ways:
 
 \begin{enumerate}
     \item \textbf{Pipeline A:} Estimates the \textit{leaf area} (not LAI) which is the visible canopy
-    of a single plant, captured by camera mounted above of the plants.
-    \item \textbf{Pipeline B:} Estimates the plant height, based on an image taken from a different camera,
+    of a single plant per ground unit, captured by camera mounted above of the plants (see figure \ref{fig:pipeline:a:camera:setup})
+    \item \textbf{Pipeline B:} Estimates the plant height, based on an image taken from a different camera and position,
     with a specific setup.
 \end{enumerate}
 
-Both metrics are then combined (with additional statistical corrections) to estimate the actual LAI.
+These both metrics are then combined (with additional statistical corrections) to estimate the actual LAI.
 Again, the LAI is different from the \textit{leaf area} in the way that it contains
-the \textit{entire} existing leaf area and not only the leaf area which is visible from above.
+the \textit{entire} existing leaf area of a plant and not only the leaf area which is visible from above.
+it's a common issue to map from a captured imaged from above to the actual plant's leaf area in order
+to estimate the plant's bio-activity.
 
 \subsection{Pipeline A}\label{subsec:pipeline-a}
 
-Introduce ...
+The purpose of Pipeline A is to compute the leaf area taken from an image from above.
+In order to do that based on an captured photo image a series of image processing and
+statistical correction has to applied. Figure \ref{fig:p:a} illustrates the high level
+view of the pipeline in order to achieve this. Each step is presented in the following sections.
 
 \begin{figure}[H]
     \centering
@@ -47,6 +52,9 @@ Introduce ...
     \caption{The pipeline can be accessed by web browser or purely on a Windows desktop.}
     \label{fig:p:a}
 \end{figure}
+
+Since the first step of the computational pipeline is an input image the following section
+will describe how the image is acquired.
 
 \input{members/ssr/modelling/setup.tex}
 \input{members/ssr/modelling/clustering.tex}
