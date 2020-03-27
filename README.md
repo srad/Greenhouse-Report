@@ -1,6 +1,6 @@
 # Greenhouse Report
 
-[![Build Status](http://sedrad.com:8080/buildStatus/icon?job=Greenhouse-Report)](http://sedrad.com:8080/job/Greenhouse-Report/)
+[![Build Status](http://jenkins.sedrad.com/buildStatus/icon?job=Greenhouse-Report)](http://jenkins.sedrad.com/job/Greenhouse-Report/)
 
 ## Setup
 
