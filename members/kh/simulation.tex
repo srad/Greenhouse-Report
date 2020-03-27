@@ -18,10 +18,11 @@ The absorption spectrum of clorophyll is shown in Figure \ref{clorophyll}. It is
 \end{figure}
 
 \subsubsection*{Specularity}
-Every plant has its own manner of protection. One of these manners is having special layers on the leaves. The outer layer is usually covered with different materials like cutin and natural wax which mostly contain  alcohol, alkaline and fatty acid. The Wax the wax itself provides a certain specularity of the leaf. This specularity needs to be simulated, because there might appear some specularity effects which might change the appearance of an object that usually has a fix color. For example if light falls directly on the leaf there might appear a bright white spot. This will later on not be seen as a leaf in the total leaf area that is mesaured, because the color differs from the green that is detected.
+Every plant has its own manner of protection. One of these manners is having special layers on the leaves. The outer layer is usually covered with different materials like cutin and natural wax which mostly contain  alcohol, alkaline and fatty acid. The Wax itself provides a certain specularity of the leaf. This specularity needs to be simulated, because there might appear some specularity effects which might change the appearance of an object that usually has a fix color. For example if light falls directly on the leaf there might appear a bright white spot. This will later on not be seen as a leaf in the total leaf area that is mesaured, because the color differs from the green that is detected. Cases like these need to b simulated to get reliable data.
 
-\subsubsection*{Roughness}
-The stucture of the leaves might have an impact on the viewable color aswell. A leaf as we know it, is not a 2d surface, but more a three dimensional object with a certain structure. A leaf contains three major aspects that let it appear in a more threedimensional way. The first two are the leaf stem and the veins forking from it. The thrid is the microstructural setting.
+\subsubsection*{Roughness \& 3D-Settings}
+The stucture of the leaves might have an impact on the viewable color aswell. A leaf as we know it, is not a 2d surface, but more a three dimensional object with a certain structure. A leaf contains three major aspects that let it appear in a more threedimensional way. The first two are the leaf stem and the veins forking from it. The thrid is the microstructural setting. 
+Editing the microstructural settings will be discussed in the next section. Getting a more realistic three-dimenstional object it is necessary to work with textures (\ref{textures}).
 
 \subsection{Color- and Materialchange in Blender}
 \input{members/kh/authors}
@@ -146,21 +147,22 @@ The removal of objects is shown in Figure \ref{order}.
 
 
 \subsection{Textures in Blender}
+\label{textures}
 \input{members/kh/authors}
 The following section is just a small outlook. The practical implementation like applying textures or chosing the correct tools in Blender will no be discussed on this point.\newline
 As already mensioned before the system needs reliable data to work with, so it is the task of the simulation to get the plants to look as realistic as possible. Real leaves have spots that reflect the light and shading that lets the collor appear differently. To apply these settings it will be necessarry to work with a texture based approach to get the leaves look better in future simulation. 
 To get these textures we basically need a picture or an already existing texture. There are a few requires Stepts to apply a texture to an object in Blender, so all gaps, shades, lightings, reflections and bumps are as realistic as possible.
 Overall there are a few textures needed wich can all be excluded from an already existing picture.
 In the following paragraphs the textures are described an can be seen in figure \ref{textures} :
-\subsubsection*{Diffuse Texture}
+\subsubsection{Diffuse Texture}
 The diffuse texture is the original bitmap. This picture is the root where all the followig textures are generated from. This picture has to contain all information that should be added to the object inside of Blener.
-\subsubsection*{Normal Texture}
+\subsubsection{Normal Texture}
 The normal texture is a bumpmap. It shows small bumps and roughnesses in the structure of the object. It adds more detail to the shading, without increasing the number of polygons the object is made of. 
-\subsubsection*{Specularity Texture}
+\subsubsection{Specularity Texture}
 The specularity texture tells the program which part of the object are glossy and which are black. The object can be reflective like metal, ceramic or plastic. It is usually a greyscale map where the black and white parts of the map highlight specularity of a pixel.
-\subsubsection*{Occlusion Texture}
+\subsubsection{Occlusion Texture}
 The occlusionmap adds more detail to the object. Is stores information about depth and shadows inside of an object. May Objects already have a more rough structure and more depth than a picture printed on an object can show.
-\subsubsection*{Displacement Texture}
+\subsubsection{Displacement Texture}
 The displacementtexture stores the 3D information of an image. A surface is usually not 2D and in the case of a leaf it is certain that it has a structure defined my the stam and the veins goin out of it as describes by the modeler. To have these parts stick out more, the displacementmap adds the 3D details to an object.
 \begin{figure}[h]
 	\centering
