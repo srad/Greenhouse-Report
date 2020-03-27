@@ -18,19 +18,20 @@ The absorption spectrum of clorophyll is shown in Figure \ref{clorophyll}. It is
 \end{figure}
 
 \subsubsection{Specularity}
-Every plant has its own manner of protection. One of these manners is having special layers on the leaves. The outer layer is usually covered with different materials like cutin and natural wax which mostly contain  alcohol, alkaline and fatty acid. The Wax the wax itself provides a certain specularity of the leaf. This specularity needs to be simulated, because there might appear some specularity effects which might change the appearance of an object that usually has a fix color. For example if light falls directly on the leaf there might appear a bright white spot. This will later on not be seen as a leaf in the total leaf area that is mesaured, because the color differs from the green that is detected.
+Every plant has its own manner of protection. One of these manners is having special layers on the leaves. The outer layer is usually covered with different materials like cutin and natural wax which mostly contain  alcohol, alkaline and fatty acid. The Wax itself provides a certain specularity of the leaf. This specularity needs to be simulated, because there might appear some specularity effects which might change the appearance of an object that usually has a fix color. For example if light falls directly on the leaf there might appear a bright white spot. This will later on not be seen as a leaf in the total leaf area that is mesaured, because the color differs from the green that is detected. Cases like these need to b simulated to get reliable data.
 
-\subsubsection{Roughness}
-The stucture of the leaves might have an impact on the viewable color aswell. A leaf as we know it, is not a 2d surface, but more a three dimensional object with a certain structure. A leaf contains three major aspects that let it appear in a more threedimensional way. The first two are the leaf stem and the veins forking from it. The thrid is the microstructural setting.
+\subsubsection{Roughness \& 3D-Settings}
+The stucture of the leaves might have an impact on the viewable color aswell. A leaf as we know it, is not a 2d surface, but more a three dimensional object with a certain structure. A leaf contains three major aspects that let it appear in a more threedimensional way. The first two are the leaf stem and the veins forking from it. The thrid is the microstructural setting. 
+Editing the microstructural settings will be discussed in the next section. Getting a more realistic three-dimenstional object it is necessary to work with textures (\ref{textures}).
 
 \subsection{Color- and Materialchange in Blender}
 \input{members/kh/authors}
 
-In this part we will look at the color and material change inside of Blender. As described in the section before, the plants from Plant-Studio have already been inserted and have the correct positioning. We decided to insert 10 plant randomly chosen from the 42 plants we generated before. The generated plants have a big number of leaves and fruits so we can reduce them afterwards, to have a more variant simulation. \newline
+In this part we will look at the color and material change inside of Blender. As described in the section before, the plants from Plant-Studio have already been inserted and have the correct positioning. We decided to insert a certain number of plants randomly chosen from the 42 plants generated before. The generated plants have a big number of leaves and fruits so we can reduce them afterwards, to have a more variant simulation. \newline
 All plants together have a mean of 211 leaves and 101 fruits.
-To get a more realistic and reliable model of the plants we change the color and the material of the plants. This is necessary because the leaf area algorithm needs reliable data to work with. It's easy to understand, that an object can differ in the appearence when the light falls on it from different angles. Therefore we need material properties that are similar to the properties of of real leafs and fruits.
+To get a more realistic and reliable model of the plants we change the color and the material of the plants. This is necessary because the leaf area algorithm needs reliable data to work with. It's easy to understand, that an object can differ in the appearence when the light falls on it from different angles. Therefore we need material properties that are similar to the properties of real leafs and fruits.
 Blender gives many options to change the properties of a material. In the following we will discuss the properties: color(appearence), metallic, emission, roughness , reflectiveness and normals. These facets are part of the pbr-library in Blender(Figure \ref{pbr}).
-The changes made in this section will mainly focus on the topside of the leaf(the side that faces the sun). This is based on the fact, that the leafarea is calculated by taking a snapshot from the top of the plant. The bottom-side will be irrelevant and will be neglected in the simulation.
+The changes made in this section will mainly focus on the real properties of the leave's topside(the side that faces the sun). This is based on the fact, that the leafarea is calculated by taking a snapshot from the top of the plant. The properties of bottom-side are irrelevant and can be neglected in the simulation.
 
 \subsubsection{Blender properties}
 \begin{figure}[h]
@@ -45,6 +46,7 @@ This property can be splitted in two components. The color and the ambient occlu
 
 \textbf{Roughness}\\
 The roughness is a property that is realized by a gray scale. The micro-surface of the material changes to a slightly rougher structure and this changes the looks and reflectionproperties when it comes to shading and rendering. \newline
+
 
 \textbf{Metallic}\\
 The option metallic is a binary map that specifies the metallic properties of a material. It is either metallic or dielectrit. It is made visible by a certain absorbtion of a material.\\
@@ -77,7 +79,7 @@ if fnmatch.fnmatchcase(obj.name, "*Leaf")]
 \end{lstlisting}
 
 \subsubsection{Creating Material}
-Since all leaves have been detected, a new material needs to be established. As described in the previous section the color, metallic, specularity and roughness of the material will be edited, so the leaf gets the structure as described.
+Since all leaves have been detected, a new material needs to be established. As described in the previous section the color, metallic, specularity and roughness of the material will be edited, so the leaf gets the structure as described. The parameters of the diffuse_color describe the red, green, blue and alpha-Values. The parameters of all other shown properties can be changed to values between zero and one. So the Material can delicately be editet.
 \lstset{language=Python, frame=single}
 \begin{lstlisting}
 # defining a new material with name "brown"
@@ -147,6 +149,7 @@ The removal of objects is shown in Figure \ref{order}.
 
 
 \subsection{Textures in Blender}
+\label{textures}
 \input{members/kh/authors}
 The following section is just a small outlook. The practical implementation like applying textures or chosing the correct tools in Blender will no be discussed on this point.\newline
 As already mensioned before the system needs reliable data to work with, so it is the task of the simulation to get the plants to look as realistic as possible. Real leaves have spots that reflect the light and shading that lets the collor appear differently. To apply these settings it will be necessarry to work with a texture based approach to get the leaves look better in future simulation. 
