@@ -70,12 +70,11 @@ These values are in the implementation combined with a range check and low pass 
 \lstinputlisting[language={[Sharp]C}, caption = Edge dectection]{members/ssr/code/edge.cs}\vspace{5pt}
 
 \textbf{Vertical Blur:} This applies just repeatedly a vertical average blur:
-
 \begin{equation}
     \frac{1}{3}\begin{bmatrix}
         1 & 1 & 1
     \end{bmatrix}^{T}
-\end{equation}\\
+\end{equation}
 
 \textbf{High pass:} Only grey values below a certain threshold, which leads to removal of irrelevant
 smaller dots and lines, see figure \ref{fig:v:3}\\
