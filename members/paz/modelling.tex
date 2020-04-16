@@ -1,4 +1,4 @@
-\graphicspath{{../figures}}
+\graphicspath{{members/paz/figures/}}
 
 \subsection{Summary of Modeler View}\label{subsec:summary-of-modeler-view}
 \input{members/paz/authors}
@@ -41,7 +41,7 @@ The requirements to module choices motivate the use of model-based and data-driv
 
 As mentioned above the LAI gives us a good representation of the PAR (photosynthetically active radiation) which highly influences biomass as well as yield production. \cite{hossain2017leaf} The yield predicted using the above mentioned modules is  useful when the plant is in a full grown state before starting to produce yield. We are able to estimate yield using the LAI at the moment of time the image is taken. Yield predicitons made by this application are used to estimate yield in the near future. In addition the approximation for full grown tomato plants is robust to inaccuracies. This is explained by the saturation of radiation that can be absorbed.The intercepted light shows a saturation at a specific LAI value. Due to the nature of the project being autonomous to a certain degree the plants do not get unnecessary leaves removed and these leaves are included in the estimated LAI. So the correlation between the LAI and the intercepted light is represented in a flattening curve. See in \ref{fig:LaiCurve}\\
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[scale=1.2]{LAI.PNG}
     \caption{\textit{Note: Measurements from \cite{heuvelink2004effect} showing the Fraction intercepted light as function of measured leaf area index (LAI), determined once per month starting from mid-March until mid-August for three leaf picking strategies: reference, high and maximum LAI.  Curve equation: fract. intercept. = 1-e-0.75 LAI.  Each data point based on 3 plots}}
