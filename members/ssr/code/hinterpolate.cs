@@ -1,5 +1,5 @@
-// If entry vCount[x,y] is true then it is counted in the next step.
-// The last step is a column-wise longest vertical line counting
+// If entry vCount[x,y] is true then it is counted in the next step
+// when searching column-wise for the longest vertical line
 var vCount = new bool[with, height];
 // Row major traversal
 for (int y = 0; y < height; y++)
@@ -7,13 +7,16 @@ for (int y = 0; y < height; y++)
   // For each horizontal pixel interpolate with neighbours
   for (int x = windowSize; x < width - windowSize; x++)
   {
-    double sum = 0d;
+    double sum = 0.0;
     // Horizontal average / interpolation,accepts slight slopes
-    for (int k = -windowSize; k <= windowSize; k++)
-      sum += srcFilter[x + k, y];
+    for (int k = x - avgWindow; k <= x + avgWindow; k++)
+    {
+      // Remember, black is 0, to sum black pixel invert them
+      sum += 255.0 - srcImage[k];
+    }
     double avg = sum / (2 * windowSize + 1);
 
-    // Lowpass filter: If not really white then count it
-    vCount[x, y] = avg < min_avg;
+    // High pass filter: If the neighbourhood black to a certain degree, then count it
+    vCount[x, y] = avg > minAvgThreshold;
   }
 }

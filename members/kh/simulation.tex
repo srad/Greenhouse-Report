@@ -64,25 +64,27 @@ Since the leaves are already imported into blender, it is only necessary to take
 Coloring the leaves is performed in three steps.
 
 \subsubsection*{Selecting Objects}
-To select objects in blender a scenery has to be picked first. The scenery contains the objects that need to be edited later on. The leaves are easiely picked by looping over all elements inside the scenery. All Elements with the suffix ''Leaf'' are added to an array so they can be accessed later.
+
+To select objects in blender a scenery has to be picked first. The scenery contains the objects that need to be edited later on. The leaves are easiely picked by looping over all elements inside the scenery. All Elements with the suffix ''Leaf'' are added to an array so they can be accessed later.\\
+
 \lstset{language=Python, frame=single}
 \begin{lstlisting}
 # defining scenery
 scene = bpy.context.scene
-
-
 # fetching Leaves
 leafs = [obj for obj in scene.objects
+
 if fnmatch.fnmatchcase(obj.name, "*Leaf")]
 \end{lstlisting}
 
 \subsubsection*{Creating Material}
-Since all leaves have been detected, a new material needs to be established. As described in the previous section the color, metallic, specularity and roughness of the material will be edited, so the leaf gets the structure as described.
+
+Since all leaves have been detected, a new material needs to be established. As described in the previous section the color, metallic, specularity and roughness of the material will be edited, so the leaf gets the structure as described.\\
+
 \lstset{language=Python, frame=single}
 \begin{lstlisting}
 # defining a new material with name "brown"
 mat_brown = bpy.data.materials.new("brown")
-
 
 # setting the Properties of the material
 mat_brown.diffuse_color = (0.091, 0.014, 0, 8)
@@ -109,14 +111,12 @@ mesh.data.materials.clear()
 mesh.data.materials.append(mat_brown)
 \end{lstlisting}
 
-
 \begin{figure}[h]
 \centering
 \includegraphics[width=1\textwidth]{coloring.png}
 \caption{Coloring}
 \label{coloring}
 \end{figure}
-
 
 \subsection{Removing Objects}
 \input{members/kh/authors}
