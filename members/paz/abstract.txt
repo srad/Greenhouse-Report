@@ -1,0 +1,47 @@
+\subsection{Abstract}
+\input{members/paz/authors}
+
+The goal of the given project is to develop an automated system to predict the yield of tomato plants in a specific greenhouse environment. 
+
+\smallskip
+
+\noindent
+The user view provides a basic overview of the project’s domain and the view of the system
+from the user’s perspective. It contains informartion regarding different greenhouse specifications. For example the manipulated, the disturbance and the controlled variables used in the greenhouse. It also encompasses the layout and the structure of the plants. As well as the growth stages and informations regarding the morphology of the plant.
+
+\smallskip
+
+\noindent
+The modeller view transitions the information gathered in the User View into a system design for yield prediction. The central assumption is the correlation between the photosyntheically active radiation (PAR) and the total fruit dry mass produced by a tomato plant.
+
+\smallskip
+
+\noindent
+In the used model the Leaf area index (LAI) is used as a representation of the PAR. In the following the Pipelines which are used to estimate a LAI value are described. For this the leaf area is represented in multiple layers that stack above each other in a cone shape.
+
+\smallskip
+
+\noindent
+Pipeline A approximates the visible leaf area using a overhead picture of the plant. The camera can move on lanes above the plants. The image is segmented and the green part is used to compute the visible leaf area of the plant. To produce better approximations a tilt angle correction is used on the calculated leaf area. Pipeline A gives us an approximation of the total leaf area of the lowest layer of the plant model. This will be used in conjunction with the height value gathered in Pipeline B to calculate a total leaf area value.
+
+\smallskip
+
+\noindent
+Pipeline B estimates the height of the plant using visual data gathered by a diagonally placed camera. In the first module the top of the plant is detected.. This works because every plant is positioned in front of a rod that is used to stabilize the plant as well as representing a long vertical edge. This vertical edge is found using edge detection based on the idea of finding the coloumn of pixels where the edge density is the highest. This column then represent the longest vertical edge. A window is placed on top and walks down the stake of pixels till the amount of grey pixels fall under a certain treshhold. This point is assumed to be the top of the plant. A sideway correction is used to add the possibility of following a tilted rod. Using information on the top pixel of the plant and data on our camera setup the actual height of the plant is calculated.
+
+\smallskip
+
+\noindent
+Finally the two pipelines are combined to estimate the LAI of the given plant.
+
+\smallskip
+
+\noindent
+In the final step of predicting the yield we assume a nonlinear dependency between our estimated value for the LAI and the produced fruit dry mass.To find that non-linearity, data needs to be gathered first. For  the  first  iteration  the  dependency  is assumed to be linear. 
+
+\begin{align}
+    yield = m \cdot LAI + b
+\end{align}
+
+\noindent
+After gatherign more data the linear model can be evaluated and replaced by a more complex model.
