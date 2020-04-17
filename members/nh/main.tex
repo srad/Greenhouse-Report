@@ -1,18 +1,23 @@
-\graphicspath{{members/nh/figures/}}
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subfig}
+\begin{document}
 
-\subsection{Giving the Greenhouse a realistic view}
-\input{members/nh/authors}
-
-\subsubsection{The camera view}
+\section{Giving the Greenhouse a realistic view}
+\subsection{The camera view}
 The Camera view shows the current scene as seen from the active camera’s viewpoint. It can also be used to show how the scene will look like when it is rendered. Once activated and locked to the view, the camera can be moved around the scene to capture shots of the objects from different views and perspectives.
+\newline
 
 \begin{figure}[htp]
     \centering
-    \includegraphics[width=14cm]{Camera.PNG}
+    \includegraphics[width=6cm]{Camera.PNG}
     \caption{Camera Position}
 \end{figure}
 
-\subsubsection*{The rendering engines}
+\subsection{The rendering engines}
 Rendering is the process of turning a 3D scene into a 2D image.There are three rendering engines in Blender:
 \begin{itemize}
 \item Cycles
@@ -20,7 +25,7 @@ Rendering is the process of turning a 3D scene into a 2D image.There are three r
 \item Workbench
 \end{itemize}
 The result of each rendering engine depends on various features such as  cameras, lights and materials. These features are supported by both \textbf{Eevee} and \textbf{Cycles}. However there are some features which are only supported in one or another.
-
+\newline
 \par\textbf{Cycles} is Blender’s physically-based path ray tracer for production rendering. It is designed to provide physically based results out-of-the-box, with artistic control and flexible shading nodes for production needs.
 There are four different light ray types supported by \textbf{Cycles}:
 \begin{itemize}
@@ -31,25 +36,25 @@ There are four different light ray types supported by \textbf{Cycles}:
 \end{itemize} \par
   
 \textbf{Eevee} is Blender’s real-time render engine. Unlike Cycles, it is not a ray tracing render engine, and uses a process called \textbf{Rasterization}. This process estimates the way light interacts with objects and materials using numerous algorithms.
-
+\newline
 \begin{figure}[htp]
     \centering
-    \includegraphics[width=14cm]{EEVEE.jpg}
+    \includegraphics[width=6cm]{EEVEE.jpg}
     \caption{eevee rendering Engine}
 \end{figure}
 \par
 For fast rendering during modeling and animation preview, \textbf{Workbench} can be used. \textbf{Workbench} supports assigning random colors to objects to make each of them visually distinct. Other coloring mechanisms also exist, including; materials, vertex colors, and textures. Its primary task is to display a scene in the 3D Viewport when it is being worked on, and not rendering the final image for a project.
-
+\newline
 \par
-\subsubsection*{Texturing}
+\subsection{Texturing}
 Texturing is one of the most important stages in rendering. Textures are applied to the object, or to be more precise, object's mesh to create the appearance of the object and give a the materialistic view to it. A mesh is a collection of vertices, edges, and faces that describe the shape of a 3D object. The advantage of using texture vs. image is that it is not necessary to place the image on each coordination to make it look 3D. Scripting is used to automate the process of creating and placing nets under each plant.
-
+\newline
 \par
-\subsubsection*{How it is done}
+\subsection{How it is done}
 A texture is downloaded from an open-source online website such as \textit{texture.com}. A plane mesh is created under each Plant. Since the mesh has a primitive shape (e.g. circle, cube, cylinder…), it can be edited to create a larger, more complex shape. In shading mode the texture is added as a node, and then is connected to the mapping of \textbf{textureCoordinate} and \textbf{principledBSDF}.
-
+\newline
 \par
-Features such as saturation, color or others are added as a node, and connected to the texture node. Changing the values of these nodes can change the properties such as light, color, ... of the texture. The following python code applies the texture to each plane:\\
+Features such as saturation, color or others are added as a node, and connected to the texture node. Changing the values of these nodes can change the properties such as light, color, ... of the texture. The following python code applies the texture to each plane:
 
 \begin{lstlisting}
     plane = bpy.context.selected_objects[0]
@@ -62,41 +67,40 @@ Features such as saturation, color or others are added as a node, and connected 
     mat.use_nodes = True
 \end{lstlisting}
 
-Linked nodes using BSDF principal are defined, which is used for shading textures:\\
-
+Linked nodes using BSDF principal are defined, which is used for shading textures:
+\newline
 \begin{lstlisting}
     bsdf = mat.node_tree.nodes["Principled BSDF"]
 \end{lstlisting}
-
 \begin{figure}[htp]
 \centering
 \includegraphics[width=6cm]{Texture.jpeg}
 \caption{Imported Texture under the plant}
 \end{figure}
 
-\subsubsection*{The lighting}
+\subsubsection{The lighting}
 \par
 The name of the light in Blender 2.8 is changed from ``lamp'' to ``light''. There are 4 types of light :
   \begin{itemize}
 
-  \item\textbf{Point light} is a directional point of light. The light power and size can be easily changed. The power is in Watt and the point light with a larger size has softer shadows and specular highlights.\\
+  \item\textbf{Point light} is a directional point of light. The light power and size can be easily changed. The power is in Watt and the point light with a larger size has softer shadows and specular highlights. \newline
  \begin{figure}[htp]
             \centering
-            \includegraphics[width=5cm]{Point.png}
+            \includegraphics[width=5cm]{point.png}
             \captionof{figure}{Point light}
         \end{figure}
 
   \item\textbf{Sun light} provides light of constant intensity emitted in a single direction from infinity far away. It is represented by a encircled black dot with dots emitting from it. \par
  \begin{figure}[htp]
            \centering
-            \includegraphics[width=14cm]{Sun.png}
+            \includegraphics[width=6cm]{Sun.png}
             \captionof{figure}{Sun light}
            \end{figure}
 
-  \item\textbf{Area light} simulates light originating from a surface emitter. For example, a TV screen or office neon lights.\\
+  \item\textbf{Area light} simulates light originating from a surface emitter. For example, a TV screen or office neon lights. \newline
  \begin{figure}[htp]
            \centering
-            \includegraphics[width=14cm]{Area.png}
+            \includegraphics[width=6cm]{Area.png}
             \captionof{figure}{Area light}
             
             \end{figure}
@@ -105,13 +109,14 @@ The name of the light in Blender 2.8 is changed from ``lamp'' to ``light''. Ther
  
  \begin{figure}[htp]
           \centering
-            \includegraphics[width=5cm]{spot.png}
+            \includegraphics[width=6cm]{spot.png}
             \captionof{figure}{Spot light}
 \end{figure}
+
  
 \par
-
-\subsubsection*{The shadow}
+\newline
+\subsection{The shadow}
 A shadow map is a texture which stores the nearest occluder from the light position. The properties for shadows are :
   \begin{itemize}
   \item Cube size, used in Point, Area and Spot light. Higher shadow map size gives sharper shadows.
@@ -121,7 +126,7 @@ A shadow map is a texture which stores the nearest occluder from the light posit
   \item Light Threshold. Setup time will saved due to computing the distance automatically based on a light threshold. 
  \end{itemize}
  
-The following python code applies the light above each plane:\\
+The following python code applies the light above each plane:
 
 \begin{lstlisting}
     texImage = mat.node_tree.nodes.new('ShaderNodeTexImage')
@@ -129,17 +134,12 @@ The following python code applies the light above each plane:\\
                      load("C:/My Documents/Blender/Textur.jpg")
     mat.node_tree.links.new(bsdf.inputs['Base Color'],
                             texImage.outputs['Color'])
-\end{lstlisting}
-
-\begin{figure}[H]
-\centering
-    \begin{minipage}[b]{0.47\textwidth}
-        \includegraphics[width=\textwidth]{Side.jpeg}
-        \caption{Plant after applying light- side}
-    \end{minipage}
-    \hfill
-    \begin{minipage}[b]{0.47\textwidth}
-        \includegraphics[width=\textwidth]{up.jpeg}
-        \caption{Plant after applying light- up}
-    \end{minipage}
+    \end{lstlisting}
+     \newpage  \begin{figure}[htp]%
+    \centering
+     \subfloat[Plant after applying light- side]{{\includegraphics[width=5cm]{Side.jpeg} }}%
+    \qquad
+    \subfloat[Plant after applying light- up]{{\includegraphics[width=5cm]{up.jpeg} }}%
 \end{figure}
+
+\end{document}
